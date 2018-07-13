@@ -1,0 +1,29 @@
+button.btn {
+
+  color: $white;
+
+  + button {
+    margin-top: 10px
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+
+  &.btn-google {
+    background-color: $red-google;
+  }
+
+  &.btn-google:hover {
+    background-color: $red-google;
+  }
+
+  &.btn-facebook {
+    background-color: $blue-facebook;
+  }
+
+  &.btn-facebook:hover {
+    background-color: $blue-facebook;
+  }
+
+}

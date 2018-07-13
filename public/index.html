@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=5">
+    <meta name="theme-color" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="This a Progressive Web App" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <title>PWA Architecture</title>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root">
+      <style type="text/css">
+        html {
+          background-color: #ececec;
+        }
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: sans-serif;
+        }
+        .welcome-loader-container {
+          overflow: hidden;
+          width: 100%;
+          height: 100vh;
+          margin: 0px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .welcome-loader {
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          border-top: 5px solid #eee;
+          border-right: 5px solid #eee;
+          border-bottom: 5px solid #eee;
+          border-left: 5px solid #333;
+          -webkit-transform: translateZ(0);
+          -ms-transform: translateZ(0);
+          transform: translateZ(0);
+          -webkit-animation: circle-loader-spin 1s infinite linear;
+          animation: circle-loader-spin 1s infinite linear;
+        }
+        @keyframes circle-loader-spin {
+          0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+          }
+          100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+          }
+        }
+      </style>
+      <div class="welcome-loader-container">
+        <div class="welcome-loader"></div>
+        <p>PWA is loading ...</p>
+      </div>
+    </div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+            console.log('Service Worker registration successful', registration.scope);
+          }, function(err) {
+            console.log('Service Worker registration failed', err);
+          }).catch(function(err) {
+            console.log(err);
+          });
+        });
+      } else {
+        console.log('Service Worker is not supported by browser.');
+      }
+    </script>
+  </body>
+</html>
